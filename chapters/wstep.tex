@@ -1,0 +1,19 @@
+\section*{Wstęp}
+\label{cha:wstep}
+
+Wraz ze wzrostem popularności oraz stopnia skomplikowanie systemów automatyki domowej i budynkowej, coraz bardziej uwypuklają się problemy związane z integracją poszczególnych technologii komunikacji bezprzewodowej, takich jak Zigbee, Bluetooth, Wi-Fi. Dodatkowo zwiększa się zapotrzebowanie na łączenie tego typu systemów z chmurą, jak również rosną wymagania dotyczące bezpieczeństwa sieci kratowych (ang. Mesh) \cite{thread-smart-home}. Jedną z odpowiedzi rynku na wymienione problemy jest opracowany przez Thread Group protokół Thread.
+
+Protokół Thread to protokół sieci kratowych, dedykowany dla urządzeń IoT (ang. \textit{Internet of Things}) małej mocy oraz ograniczonym paśmie, który został zaprojektowany w oparciu o sprawdzone technologie, takie jak IEEE 802.15.4 oraz 6LoWPAN (ang. \textit{IPv6 over Low-Power Wireless Personal Area Network}). Thread opiera się o IPv6 (ang. \textit{Internet Protocol, Version 6}), co znacznie ułatwia połączenie z chmurą lub szeroko pojętym Internetem. Ponadto standard ten definiuje mechanizmy poprawiające bezpieczeństwo sieci kratowych, sprawiając, że urządzenia w łatwy i bezpieczny sposób są w stanie dołączyć do istniejącej sieci Thread.
+
+Zastosowanie stosu Thread nie tylko niesie ze sobą bezpieczeństwo oraz mechanizmy ułatwiające prostą integrację w systemach automatyki budynkowej, ale może stanowić alternatywę dla systemów opartych na Zigbee lub Bluetooth Mesh, ze względu na oferowaną niezawodność. Jak pokazuje analiza przeprowadzona przez Silicon Labs \cite{thread-bt-zigbee-comparison} w ramach porównania 3 protokołów IoT, Thread wykazuje niższe czasy opóźnień w stosunku do reszty.
+
+Pomimo kompatybilności protokołu Thread z urządzeniami opartymi o IEEE 802.15.4, nie jest możliwym, aby zaimplementować stos protokołów Thread we wszystkich urządzeniach LR-WPAN (z ang. \textit{Low Range Wireless Personal Area Network}). Czynnikiem ograniczającym są zasoby sprzętowe urządzeń, takie jak pamięć, co wynika z potrzeby wsparcia warstwy sieciowej oraz funkcjonalności z nią związanych.
+
+Próba weryfikacji, jak protokół Thread o szeregu cech, korzyści i ograniczeń wymienionych powyżej znajduje zastosowanie w systemie automatyki domowej i budynkowej, stanowi motywację do powstania tej pracy.
+
+\section*{Cel Pracy}
+
+Celem pracy jest opracowanie prototypu przykładowego systemu automatyki domowej lub budynkowej, wykorzystującego stos protokołów Thread. System został zaimplementowany na jednej z platform Nordic Semiconductor serii nRF5x, z wykorzystaniem zestawu narzędzi dostarczonych przez producenta. Etapem końcowym projektu stanowi demonstracja działania systemu opartego na co najmniej 5 urządzeniach serii nRF5x oraz analiza zasobów sprzętowych niezbędnych do uruchomienia stosu Thread na wykorzystanej platformie.
+
+
+\label{cha:cel}
