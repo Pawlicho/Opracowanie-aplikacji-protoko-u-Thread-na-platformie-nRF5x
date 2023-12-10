@@ -1,24 +1,25 @@
 \chapter{Propozycja systemu}
 \label{cha:propozycja-systemu}
 
-Funkcją systemu jest utrzymanie zdefiniowanych w Tabeli 2.1 parametrów środowiska, na poziomie zadanym przez użytkownika systemu. W tym celu urządzenia systemu dokonują pomiaru parametrów oraz regulacji swojej mocy.
+Funkcją systemu jest utrzymanie zdefiniowanych w Tabeli \ref{tab:profiles-parameters} parametrów środowiska, na poziomie zadanym przez użytkownika systemu. W tym celu urządzenia systemu dokonują pomiaru parametrów oraz regulacji swojej mocy.
 
 \begin{table}[H]
     \centering
     \caption{Zestaw parametrów określonych dla zdefiniowanych profili.}
     \begin{tabular}{|c|c|c|}
          \hline
-         Profil & HEATER & DIMMER \\
+         \rowcolor{gray!20}
+          & HEATER & DIMMER \\
          \hline
-         Parametr & temperatura & natężenie oświetlenia \\
+         \cellcolor{gray!20}Parametr & temperatura & natężenie oświetlenia \\
          \hline
-         Jednostka & $^{\circ}$C & Lux \\
+         \cellcolor{gray!20}Jednostka & $^{\circ}$C & Lux \\
          \hline
     \end{tabular}
-    \label{tab:my_label}
+    \label{tab:profiles-parameters}
 \end{table}
 
-Na Rys. 2.1. przedstawiono system automatyki domowej, którego projekt i implementacja leży w zakresie kolejnych rozdziałów.
+Na Rysunku \ref{fig:system-architecture} przedstawiono system automatyki domowej, którego projekt i implementacja leży w zakresie kolejnych rozdziałów.
 
 \begin{figure}[H]
     \centering
@@ -39,8 +40,9 @@ Zaproponowany system opiera się na architekturze klient-serwer i składa się z
 Celem niniejszego rozdziału jest omówienie zaproponowanego systemu oraz opisanie jego poszczególnych komponentów. 
 
 \section{Strona kliencka}
+\label{sec:system-clients}
 
-Klientami w systemie są urządzenia połączone w sieć Thread, realizujące profile określone w Tabeli 2.1.. Rolą HEATER oraz DIMMER jest implementacja usług pomiaru i regulacji parametru.
+Klientami w systemie są urządzenia połączone w sieć Thread, realizujące profile określone w Tabeli \ref{tab:profiles-parameters}. Rolą HEATER oraz DIMMER jest implementacja usług pomiaru i regulacji parametru.
 Klienci komunikują się z serwerem w celu dostarczenia pomiarów oraz uzyskania informacji o decyzji dotyczącej konieczności regulacji mocy.
     
 \section{Strona serwera}

@@ -16,16 +16,17 @@ Do projektu wykorzystano platformę Nordic Semiconductor nRF52833 z serii nRF52.
 
     Według zapewnień producenta, platformy nRF52833 może zostać wykorzystana do zastosowań Smart-Home lub przemysłowego IoT i pracować jako czujnik lub kontroler \cite{nrf52833-characteristics}.
 
-    Do procesu rozwijania oprogramowania, wykorzystano płytkę ewaluacyjną nRF52833 DK, której schemat blokowy przedstawiono na Rys. 3.1..
+    Do procesu rozwijania oprogramowania, wykorzystano płytkę ewaluacyjną nRF52833 DK, której schemat blokowy przedstawiono na Rysunku \ref{fig:nrf8233-block-diagram}.
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\linewidth]{graphics/nrf52833DK_block_diagram.jpg}
+        \includegraphics[width=0.8\linewidth]{graphics/external/nrf52833DK_block_diagram.jpg}
         \caption{Schemat blokowy płytki ewaluacyjnej nRF52833 DK \cite{nrf52833-diagram}.}
         \label{fig:nrf8233-block-diagram}
     \end{figure}
 
 \subsection{Narzędzia producenta}
+\label{subsec:producer-tools}
 
     Do tworzenia oprogramowania wykorzystano zestaw narzędzi nRF Connect SDK \cite{nrf-connect}. Stworzone przez Nordic Semiconductor SDK (ang. \textit{Software Development Kit}) jest dedykowane do tworzenia aplikacji, wykorzystujących transmisję bezprzewodową małej-mocy. nRF Connect SDK opiera się, między innymi, na urządzeniach z serii nRF52 oraz wspiera rozwój oprogramowania w środowisku Microsoft Windows.
 
@@ -44,6 +45,6 @@ Do projektu wykorzystano platformę Nordic Semiconductor nRF52833 z serii nRF52.
 
 \section{Openthread}
 
-    OpenThread to upubliczniona, wolna implementacja stosu Thread, stworzona przez Google. Projekt OpenThread jest wspierany przez, między innymi, Nordic Semiconductor. Stos OpenThread wraz z platformą sprzętową nRF52833 posiada certyfikat \textit{Thread Certified Component} \cite{nrf52833-tcc}, co świadczy o pełnej zgodności ze standardem Thread oraz spełnieniu dodatkowych wymogów wyszczególnionych w specyfikacji \cite{thread-1.3.0}. Implementacja OpenThread wraz z API (ang. \textit{Application Programming Interface}) jest uwzględniona w nRF Connect SDK przedstawionym w podsekcji 3.1.2..
+    OpenThread to upubliczniona, wolna implementacja stosu Thread, stworzona przez Google. Projekt OpenThread jest wspierany przez, między innymi, Nordic Semiconductor. Stos OpenThread wraz z platformą sprzętową nRF52833 posiada certyfikat \textit{Thread Certified Component} \cite{nrf52833-tcc}, co świadczy o pełnej zgodności ze standardem Thread oraz spełnieniu dodatkowych wymogów wyszczególnionych w specyfikacji \cite{thread-1.3.0}. Implementacja OpenThread wraz z API (ang. \textit{Application Programming Interface}) jest uwzględniona w nRF Connect SDK przedstawionym w podsekcji \ref{subsec:producer-tools}.
 
     Poza implementacją stosu Thread, OpenThread dostarcza dodatkowe narzędzia pomocny przy rozwoju systemów opartych o implementację Thread. Jednym z nich jest aplikacja rutera brzegowego OTBR (ang. \textit{OpenThread Border Router}) \cite{openthread-br}.
