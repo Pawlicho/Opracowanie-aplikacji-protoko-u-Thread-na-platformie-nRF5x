@@ -62,12 +62,12 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
 
     Na koniec przywrócono w projekcie rolę FTD.
 
-    \subsection{Konfiguracja mechanizmu Commissioning}
+    \subsection{Projekt z włączonym stosem Thread oraz skonfigurowanym mechanizmem Commissioning}
     Projekt ze skonfigurowanym stosem Thread w wersji 1.3 wzbogacono o funkcjonalności związane z mechanizmem Commissioning. Do pliku konfiguracyjnego dodano opcję \\\textit{CONFIG\_OPENTHREAD\_COMMISSIONER}, aby ustalić rolę Commissioner urządzenia, a następnie \\\textit{CONFIG\_OPENTHREAD\_JOINER}, w celu konfiguracji roli Joiner. Uzyskane wartości zużytej pamięci zestawiono na pozycji \textit{8} oraz \textit{9} w Tabeli \ref{tab:memory-measures}.
     
     Po dokonaniu pomiaru, wyłączono mechanizm Commissioning.
 
-    \subsection{Projekt ze skonfigurowaną konsolą OpenThread CLI}
+    \subsection{Projekt z włączonym stosem Thread oraz ze skonfigurowaną konsolą OpenThread CLI}
 
     Aby umożliwić konfigurację urządzeń w sieci Thread poprzez użycie OpenThread CLI, niezbędnym jest skonfigurowanie konsoli Shell. Utworzono nowy projekt, w którym skonfigurowano tylko konsolę. Zmierzono zużycie zasobów i zestawiono na pozycji \textit{10} w Tabeli \ref{tab:memory-measures}. Kolejno, powrócono do projektu ze stosem Thread v1.3 dla urządzenia FTD, a następnie włączono funkcjonalności konsoli Shell oraz dodatkowo skonfigurowano funkcjonalność OpenThread CLI. Wykorzystany RAM oraz ROM po uwzględnieniu w projekcie OpenThread CLI zestawiono na pozycji \textit{11} w Tabeli \ref{tab:memory-measures}.
         
@@ -137,19 +137,15 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
 
 \section{Wnioski}
 
-Jakie wnioski przychodzą od razu na myśl? PoC ofc
+Przeprowadziwszy analizę zużycia zasobów pamięci dla funkcjonalności protokołu Thread, na platformie nRF52833 w implementacji Openthread, wysunięto następujące wnioski.
 
-Ogromna (w mojej opinii, ale oczywiście trzeba użyć innych słów) ilość pamięci RAM wędruje dla kontekstu sieci oraz na kryptografie, która jest wymagana przy podstawowej konfiguracji. 
+Uruchomienie OpenThread wymaga dołączenia biblioteki, która w stosunku do innych wykorzystanych sekcji ROM, wymaga dużej liczby dostępnej pamięci nieulotnej. Nie jest możliwym na podstawie przeprowadzonej obserwacji, aby stwierdzić, czy uwzględnienie całej biblioteki załączonej do pamięci nieulotnej, jest niezbędne do poprawnego działania stosu Thread. Jeżeli w użytej bibliotece są zawarte fakultatywne funkcjonalności, istniałaby możliwość na optymalizację zużycia zasobów, poprzez selektywny dobór tylko tych funkcjonalności, który są konieczne do zapewnienia zgodnego ze standardem \cite{thread-1.3.0} działania sieci Thread.
 
-Skonfigurowanie OpenThread, dołącza bibliotekę, która wydaje się być duża w objętości, teza, że może przez odpowiednią optymalizację, dałoby się to jeszcze zniwelować.
+Największe zużycie RAM spowodowane jest potrzebą zaalokowania w pamięci ulotnej obszaru dla kontekstu sieci Thread oraz zmiennych wykorzystywanych w zastosowaniach kryptograficznych. Domyślną biblioteką algorytmów szyfrowania, która została uwzględniona przy uruchomieniu OpenThread, jest Mbed TLS. W celu ewentualnej optymalizacji zużytych zasobów pamięci, sugerowanym jest porównanie wykorzystanej implementacji z innymi otwartymi, dostępnymi bibliotekami TLS (ang. \textit{Transport Layer Security}), takimi jak \textit{OpenSSL}, \textit{libsodium}, \textit{Crypto++} \cite{mbed-tls-alt}. 
 
-Rola MTD wymaga mniejszych zasobów niż FTD, i tutaj można powiedzieć, że urządzenia końcowe pracujące jako MED są w stanie mieć mniejsze zasoby do poprawnego działania, natomiast rutery potrzebują być dodatkowo dokokszone. 
+Rola MTD wymaga mniejszych zasobów niż FTD. Urządzenia końcowe pracujące jako MED, pełniące rolę czujników i regulatorów, są w stanie posiadać mniejsze zasoby pamięci, niezbędne do poprawnego działania. Z kolei do uruchomienia urządzeń pracujących jako Rutery, koniecznym jest uwzględnienie większego zaplecza pamięci. Ponadto włączenie roli Commissioner zużywa więcej RAM oraz ROM, aniżeli uruchomienie roli Joiner. Urządzeniem Commissioner może być tylko Ruter, co wprowadza dodatkowe wymagania odnośnie dostępnej pamięci.
 
-Wspomnieć że konsola CLI nie jest wymagana, bo jest możliwym aby ustawić odpowiednie parametry w kodzie, no i że można jej używać np przy konfiguracji rutera/ rutera brzegowego, czyli urządzeń o znacznie większej puli pamięci.
-
-Jeżeli się uda to super, gdyby udało znaleźć się jakieś badania dla innych urządzeń np. zigbee. Bo wydaje mi się, że te wartości dla thread są duuuuuże.
-
-Trzeba dodatkowo uwypuklić, że to jest takie pseudo PoC i nie jestem w stanie określić ile dokładnie zasobów trzeba przeznaczyć na konfigurację Thread, ponieważ to jest tylko jedna platforma oraz jedna konkretna implementacja stosu.
+W przypadku potrzeby wykorzystywania konsoli OpenThread CLI, sugerowanym jest aby wykorzystać urządzenie o pamięci RAM oraz ROM większej o liczbę przedstawioną w Tabeli \ref{tab:component-memory-usage}. Włączenie konsoli OpenThread nie jest niezbędne, natomiast może być pomocna w przypadku chęci dynamicznej konfiguracji sieci Thread w trakcie działania aplikacji, szczególnie na takich urządzeniach ja Rutery czy Rutery Brzegowe.
 
 
 
