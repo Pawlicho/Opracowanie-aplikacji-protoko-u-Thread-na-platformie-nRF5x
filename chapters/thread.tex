@@ -1,7 +1,7 @@
 \chapter{Wprowadzenie do Thread}
 \label{cha:wprowadzenie}
 
-Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, poprzez przedstawienie i omówienie stosu protokołów, wyszczególnienie urządzeń oraz ról w jakich pracują węzły sieci Thread oraz zaprezentowanie wybranych, podstawowych mechanizmów, przydatnych do zrozumienia zagadnienia sieci Thread. Poniższe rozważania w poniższym oparte są o publiczną dokumentację Thread \cite{thread-1.3.0}.
+Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, poprzez przedstawienie i omówienie stosu protokołów, wyszczególnienie urządzeń oraz ról w jakich pracują węzły sieci Thread oraz zaprezentowanie wybranych, podstawowych mechanizmów, przydatnych do zrozumienia zagadnienia sieci Thread. Rozważania w poniższym rozdziale oparte zostały o publiczną dokumentację Thread \cite{thread-1.3.0}.
 
 \section{Stos protokołów}
 \label{sec:thread-stack}
@@ -17,24 +17,24 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
 
     \subsection{Warstwa Fizyczna oraz Warstwa Łącza Danych}
 
-        Protokół Thread jest stworzony dla urządzeń, których 2 pierwsze warstwy modelu OSI są oparte o standard definiujący LR-WPAN (ang. \textit{Low-Rate Wireless Personal Area Network}) w wersjach 802.15.4-2006 lub 802.15.4-2015. Jednakże nie jest wymaganym aby urządzenia Thread funkcjonowały w sieciach LR-WPAN. Ponadto protokół Thread nie wykorzystuje zdefiniowanych w 802.15.4 ról, takich jak:
+        Protokół Thread jest stworzony dla urządzeń, których 2 pierwsze warstwy modelu OSI są oparte o standard definiujący LR-WPAN w wersjach IEEE 802.15.4-2006 lub IEEE IEEE 802.15.4-2015. Jednakże nie jest wymaganym aby urządzenia Thread funkcjonowały w sieciach LR-WPAN. Ponadto protokół Thread nie wykorzystuje zdefiniowanych w 802.15.4 ról, takich jak:
         \begin{itemize}
             \item FFD (ang. \textit{Full-Function Device}),
             \item RFD (ang. \textit{Reduced-Function Device}),
-            \item Koordynatora PAN (ang. Personal \textit{Area Network Coordinator}).
+            \item Koordynatora PAN (ang. \textit{Personal Area Network Coordinator}).
         \end{itemize}
 
     \subsection{Warstwa Sieciowa}
 
         W warstwie 3. Modelu OSI Thread implementuje protokół IPv6.
         
-        W celu umożliwienia przesyłania pakietów IPv6 nad WPAN, wprowadzono warstwę adaptacyjną 6LoWPAN. Usprawnienie to pozwala na enkapsulacje pakietów IPv6 do IEEE 802.15.4 MSDU (MAC Service Data Unit) oraz definiuje mechanizmy kompresji nagłówków IPv6, fragmentacji i składania pakietów IPv6, odpowiednio do oraz z IEEE 802.15.4 MSDU.
+        W celu umożliwienia przesyłania pakietów IPv6 nad LR-WPAN, wprowadzono warstwę adaptacyjną 6LoWPAN. Usprawnienie to pozwala na enkapsulacje pakietów IPv6 do IEEE 802.15.4 MSDU (MAC Service Data Unit) oraz definiuje mechanizmy kompresji nagłówków IPv6, fragmentacji i składania pakietów IPv6, odpowiednio do oraz z IEEE 802.15.4 MSDU.
         
-        Do rutowania (ang. routing) Thread wykorzystuje zdefiniowany w rozdziale 5.9 dokumentacji \cite{thread-1.3.0} protokół rutingu wektora odległości.
+        Do rutowania (ang. \textit{routing}) Thread wykorzystuje zdefiniowany w rozdziale 5.9 dokumentacji \cite{thread-1.3.0} protokół rutingu wektora odległości.
 
     \subsection{Warstwa Transportowa}
     
-        Do komunikacji między węzłami w warstwie transportowej, sieć Thread wykorzystuje UDP (ang. \textit{User Datagram Protocol}). Protokół ten jest wymagany przy implementacji stosu Thread, ponieważ jest on wykorzystywany w procesach sygnalizacyjnych oraz mechanizmach zarządzania siecią Thread.
+        Do komunikacji między węzłami w warstwie transportowej sieć Thread używa UDP (ang. \textit{User Datagram Protocol}). Protokół ten jest wymagany przy implementacji stosu Thread, ponieważ jest wykorzystywany w procesach sygnalizacyjnych oraz mechanizmach zarządzania siecią Thread.
     
         Wdrożenie TCP (ang. \textit{Transport Control Protocol}) nie jest obligatoryjne. Natomiast w przypadku potrzeby uwzględnienia TCP, Thread definiuje wskazówki do efektywnej implementacji tego protokołu w rozdziale 6.2 dokumentacji \cite{thread-1.3.0}.
 
@@ -49,7 +49,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
     \begin{enumerate}
         \item Ruter (ang. \textit{router}):
         \begin{itemize}
-            \item posiada możliwość przekazywania pakietów między węzłami sieci
+            \item posiada możliwość przekazywania pakietów między węzłami sieci,
             \item odbiornik urządzenia pozostaje włączony cały czas,
             \item jest niezbędnym elementem w procesie dołączania innego urządzenia do sieci Thread.
         \end{itemize}
@@ -61,9 +61,10 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         \end{itemize}
     \end{enumerate}
 
-    ED, stanowiące rolę Dziecka (ang. \textit{Child}), pozostaje zawsze połączone z wyłącznie jednym Ruterem, którego określa się Rodzicem (ang. \textit{Parent} lub \textit{Parent Router}).
+    ED, stanowiące rolę \textit{Dziecka} (ang. \textit{Child}), pozostaje zawsze połączone z wyłącznie jednym Ruterem, którego określa się terminem \textit{Rodzic} (ang. \textit{Parent} lub \textit{Parent Router}).
 
     \subsection{Typy urządzeń}
+    \label{subsec:device-types}
 
         Ostatecznie, dokonano podziału urządzeń Thread, wyszczególniając dwa główne typy:
         \begin{enumerate}
@@ -87,7 +88,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
             MTD ograniczone są jedynie do pełnienia roli Urządzeń Końcowych. Kolejno można wyróżnić:
             \begin{itemize}
                 \item MED (ang. \textit{Minimal End Device}) - rodzaj Urządzenia Końcowego, którego odbiornik jest zawsze włączony.
-                \item SED (ang. \textit{Sleepy End Device}) - rodzaj Urządzenia Końcowego, którego odbiornik jest wyłączony przez większość czasu, natomiast włącza się okazjonalnie, aby otrzymać pakiety przekazane od Rodzica.
+                \item SED (ang. \textit{Sleepy End Device}) - rodzaj Urządzenia Końcowego, którego odbiornik jest wyłączony przez większość czasu, natomiast włącza się okazjonalnie, aby odebrać pakiety przekazane przez Rodzica.
             \end{itemize}
 
         \begin{figure}[H]
@@ -112,60 +113,60 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         Główne funkcje Lidera:
         \begin{itemize}
             \item Awans do Ruterów oraz ich degradacja poprzez zarządzanie numerem ID Rutera (ang. \textit{Router ID}),
-            \item Zbierania i rozsyłanie informacji o sieci Thread (ang. \textit{Thread Network Data})
+            \item Zbierania i rozsyłanie informacji o sieci Thread (ang. \textit{Thread Network Data}).
         \end{itemize}
 
-        Proces awansu i degradacji węzłów przez Lidera uwzględnia możliwości typów urządzeń opisane w sekcji 1.2. W jednej sieci Thread rolę Lidera może pełnić tylko jedno urządzenia. W momencie tworzenie topologii, urządzenie FTD inicjujące sieć zostaje wybierane na Lidera.
+        Proces awansu i degradacji węzłów przez Lidera uwzględnia możliwości typów urządzeń opisane w podsekcji \ref{subsec:device-types}. W jednej sieci Thread rolę Lidera może pełnić tylko jedno urządzenia. W momencie tworzenie topologii, urządzenie FTD inicjujące sieć zostaje wybierane na Lidera.
         
         \subsubsection{Ruter Brzegowy}
 
-        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędnym jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe, jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}, oraz potrafi przekazywać między nimi pakiety IPv6.
+        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędnym jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe, jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}), oraz potrafi przekazywać między nimi pakiety IPv6.
 
-    Wymienione role Rutera mogą się nakładać. Jeden węzeł może być np. Ruterem Brzegowym, Liderem oraz Rodzicem dla innego ED.
+    Wymienione role Rutera mogą się nakładać. Jeden węzeł może być jednocześnie np. Ruterem Brzegowym, Liderem oraz Rodzicem dla innego ED.
 
 \section{Przegląd wybranych mechanizmów sieci Thread}
 
     \subsection{Tworzenie sieci}
     \label{subsec:network-forming}
 
-    Formowanie sieci Thread rozpoczyna się od wybrania IEEE 802.15.4 numeru kanału (ang. \textit{channel}) oraz IEEE 802.15.4 PAN ID (ang. \textit{Personal Area Network Identifier}). Kolejno, aby stworzyć się, urządzenie inicjujące jest zobligowane do wybrania wartości poniższych parametrów:
+    Formowanie sieci Thread rozpoczyna się od wybrania IEEE 802.15.4 numeru kanału (ang. \textit{channel}) oraz IEEE 802.15.4 PAN ID (ang. \textit{Personal Area Network Identifier}). Kolejno, aby stworzyć sieć, urządzenie inicjujące jest zobligowane do wybrania wartości poniższych parametrów:
     \begin{itemize}
-        \item Thread Network Short PAN Identifier (PAN ID) - 16 b, liczba całkowita bez znaku, unikalna w zasięgu skanowania.
-        \item Network Key - 16 B, do zastosowań kryptograficznych.
-        \item Commissioning Credential - 8-255 B, ciąg znaków, wykorzystywany do tworzenia klucza PSKc podczas procesu Commissioning.
-        \item Mesh-Local Prefix - prefix IPv6, wykorzystywany do adresacji urządzeń urządzeń w sieci Thread.
-        \item Extended PAN ID - 8 B, identyfikuje sieć Thread w zasięgu.
-        \item Network Name - 1-16 B, ciąg znaków, identyfikuje sieć Thread.
+        \item \textit{Thread Network Short PAN Identifier (PAN ID)} - 16 b, liczba całkowita bez znaku, unikalna w zasięgu skanowania.
+        \item \textit{Network Key} - 16 B, do zastosowań kryptograficznych.
+        \item \textit{Commissioning Credential} - 8-255 B, ciąg znaków, wykorzystywany do tworzenia klucza PSKc podczas procesu Commissioning.
+        \item \textit{Mesh-Local Prefix} - prefix IPv6, wykorzystywany do adresacji urządzeń w sieci Thread.
+        \item \textit{Extended PAN ID} - 8 B, identyfikuje sieć Thread w zasięgu.
+        \item \textit{Network Name} - 1-16 B, ciąg znaków, identyfikuje sieć Thread.
     \end{itemize}{}
 
-    Urządzenie inicjujące sieć zostaje Ruterem, wybierając dla siebie RouterId, a w konsekwencji braku innych Ruterów w sieci również Liderem.
+    Urządzenie inicjujące sieć zostaje Ruterem, wybierając dla siebie identyfikator \textit{RouterId}, a w konsekwencji braku innych Ruterów w sieci, również Liderem.
 
     \subsection{Commissioning}
     \label{subsec:commissioning}
 
-    Commissioning to proces pozwalający nowym urządzeniom na dołączenie do istniejącej sieci Thread. W celu zapewnienia bezpieczeństwa oraz powstrzymanie niechcianych urządzeń (ang. Rouge Device) przed połączeniem z siecią Thread, węzły powinny zostać uwierzytelnione i autoryzowane. Podstawą działania mechanizmu jest protokół DTLS (ang. \textit{Datagram Transport Layer Security}).
+    Commissioning to proces pozwalający nowym urządzeniom na dołączenie do istniejącej sieci Thread. W celu zapewnienia bezpieczeństwa oraz powstrzymanie niechcianych urządzeń (ang. \textit{Rouge Device}) przed połączeniem z siecią Thread, węzły powinny zostać uwierzytelnione i autoryzowane. Podstawą działania mechanizmu jest protokół DTLS (ang. \textit{Datagram Transport Layer Security}).
 
     W celu opisania mechanizmu Commissioning, wprowadzono następujące terminy:
     \begin{itemize}
-        \item Joiner - rola nowego urządzenia próbującego podłączyć się do sieci.
-        \item Commissioner - rola urządzenia, który uwierzytelnia węzeł o roli Joiner.
-        \item Joiner Router - rola urządzenia, który jest Ruterem i znajduje się najbliżej sieci, do której stara się przyłączyć Joiner.
+        \item \textit{Joiner} - rola nowego urządzenia próbującego podłączyć się do sieci.
+        \item \textit{Commissioner} - rola urządzenia, który uwierzytelnia węzeł o roli Joiner.
+        \item \textit{Joiner Router} - rola urządzenia, który jest Ruterem i znajduje się najbliżej sieci, do której stara się przyłączyć Joiner.
     \end{itemize}
 
     Ze względu na to czy Commissioner znajduje się w sieci Thread lub poza nią, wyróżniamy kolejno 2 typy procesu Commissioning \cite{thread-commissioning}:
     \begin{enumerate}
-        \item On-mesh,
-        \item External.
+        \item \textit{On-mesh},
+        \item \textit{External}.
     \end{enumerate}
 
     W aktualnej sekcji, opisany zostanie jedynie scenariusz On-mesh, w którym Commissioner jest częścią sieci w domenie Thread.
 
     Na Rysunku \ref{fig:thread-on-mesh-commissioning} przedstawiono przykładową sieć Thread z wyszczególnieniem ról charakterystycznych dla procesu On-mesh Commissioning.
 
-    Urządzenia, które mogą pełnić rolę Commissioner, wymieniają wiadomości z Liderem, w celu ustalenia, który z kandydatów będzie pełnił tę funkcję. W sieci Thread, w jednym momencie może istnieć dokładnie jeden Commissioner. Proces ten określono nazwą Petitioning.
+    W sieci Thread, w jednym momencie może istnieć dokładnie jeden Commissioner. Urządzenia, które mogą pełnić rolę Commissioner, wymieniają wiadomości z Liderem, w celu ustalenia, który z kandydatów będzie pełnił tę funkcję. Proces ten określono nazwą Petitioning.
 
     Po elekcji urządzenia, który będzie pełnił rolę Commissioner, kolejne urządzenia Joiner są w stanie rozpocząć próbę dołączenia do sieci, nazwaną Joining.
-    W kolejnym kroku zestawione zostaje połączenie Joiner-Joiner Router, a następnie Joiner-Commissioner, które jest zabezpieczone z użyciem protokołu DTLS i do którego zestawienia niezbędne jest Joining Device Credential (PSKd). Następnie Joiner zostaje uwierzytelniony na skutek wymiany kolejnych wiadomości z Commissioner. W wyniku poprawnie przeprowadzonego procesu Commissioning urządzenie posiada niezbędne informacje aby podłączyć się do sieci.
+    W kolejnym kroku zestawione zostaje połączenie \\ Joiner-Joiner Router, a następnie Joiner-Commissioner, które jest zabezpieczone z użyciem protokołu DTLS i do którego zestawienia niezbędne jest podanie przez Joinera Joining Device Credential (PSKd). Następnie Joiner zostaje uwierzytelniony na skutek wymiany kolejnych wiadomości z Commissioner. W wyniku poprawnie przeprowadzonego procesu Commissioning, urządzenie posiada wszystkie niezbędne informacje, aby podłączyć się do sieci.
 
     \begin{figure}[H]
         \centering
@@ -191,7 +192,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
     
     Informacje te mogą zostać uzyskane w wyniku pomyślnego zakończenia procesu Commissioning.
 
-    Urządzenie posiadający wszystkie niezbędne informacje o sieci, w kolejnym kroku zestawia połączenie Dziecko-Rodzic z wykorzystaniem mechanizmu MLE (Mesh Link Establishment). Ostatecznie, nawiązanie połączenia zakończone jest przesłaniem przez Rodzica identyfikatora Child ID. Od tego momentu urządzenie dołączające jest częścią sieci Thread.
+    Urządzenie posiadające wszystkie niezbędne informacje o sieci, w kolejnym kroku zestawia połączenie Dziecko-Rodzic z wykorzystaniem mechanizmu MLE (ang. \textit{Mesh Link Establishment}). Ostatecznie, nawiązanie połączenia zakończone jest przesłaniem przez Rodzica identyfikatora Child ID. Od tego momentu urządzenie dołączające jest częścią sieci Thread.
 
 
 
