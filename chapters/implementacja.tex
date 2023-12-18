@@ -31,9 +31,9 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
 
         W celu zapewnienia komunikacji przyszłej sieci Thread z zewnętrzną siecią Ethernet, w pierwszej kolejności przystąpiono do konfiguracji Rutera brzegowego, wykorzystując implementację OTBR. 
         
-        Aplikacja OTBR jest dedykowana dla systemów operacyjnych Linux oraz do poprawnego działania wymaga nawiązania komunikacji zarówno z interfejsem sieci Thread, jak również z interfejsem sieci zewnętrznej. Z tego powodu, w początkowym kroku skonfigurowano platformę Linux, jako maszynę wirtualną z dystrybucją Ubuntu, tak aby zapewnić komunikację sieciową oraz komunikację portów szeregowych między urządzeniem gościa (ang. \textit{Guest}) (maszyną wirtualną) a gospodarza (ang. \textit{Host}) (Laptop Dell). Kolejno skonfigurowano środowisko deweloperskie, instalując narzędzia, takie jak między innymi, system kontroli wersji Git, IDE (ang. \textit{Integrated Development Environment})r. 
+        Aplikacja OTBR jest dedykowana dla systemów operacyjnych Linux oraz do poprawnego działania wymaga nawiązania komunikacji zarówno z interfejsem sieci Thread, jak i z interfejsem sieci zewnętrznej. Z tego powodu, w początkowym kroku skonfigurowano platformę Linux jako maszynę wirtualną z dystrybucją Ubuntu tak, aby zapewnić komunikację sieciową oraz komunikację portów szeregowych między urządzeniem gościa (ang. \textit{Guest}) (maszyną wirtualną) a gospodarza (ang. \textit{Host}) (Laptop Dell). Kolejno skonfigurowano środowisko deweloperskie, instalując narzędzia takie jak, między innymi, system kontroli wersji Git, IDE (ang. \textit{Integrated Development Environment}). 
 
-        Po weryfikacji poprawności działania maszyny wirtualnej, kontynuowano proces konfiguracji OTBR, wykorzystując instrukcję zamieszczoną na oficjalnej stronie projektu OpenThread \cite{otbr-docker}. Zaprogramowano jedno z urządzeń nRF52833 aplikacją RCP (ang. \textit{Radio Co-Processor}), używając dostarczoną przez OpenThread implementację \cite{otbr-rcp-app}. Ostatecznie zainstalowano oprogramowanie Docker oraz pobrano dystrybuowany przez OpenThread kontener.
+        Po weryfikacji poprawności działania maszyny wirtualnej kontynuowano proces konfiguracji OTBR, wykorzystując instrukcję zamieszczoną na oficjalnej stronie projektu OpenThread \cite{otbr-docker}. Zaprogramowano jedno z urządzeń nRF52833 aplikacją RCP (ang. \textit{Radio Co-Processor}), używając dostarczonej przez OpenThread implementacji \cite{otbr-rcp-app}. Ostatecznie zainstalowano oprogramowanie Docker oraz pobrano dystrybuowany przez OpenThread kontener.
 
         Tak przygotowane środowisko Linux oraz zaprogramowane urządzenie nRF52833 są gotowe do uruchomienia w pełni funkcjonalnej aplikacji Rutera Brzegowego.
 
@@ -42,7 +42,7 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
 
     Aplikację dla 4 pozostałych urządzeń nRF52833 stworzono w języku C z wykorzystaniem nRF Connect SDK oraz środowiska programistycznego nRF Connect IDE. W plikach konfiguracyjnych projektów skonfigurowano odpowiednio stos protokołu i niezbędne funkcjonalności Thread, system logowanie, GPIO (ang. \textit{general-purpose input/output}). Kolejno wybrano tryb MTD dla 2 urządzeń, natomiast dla pozostałych FTD. 
 
-    Dodatkowo, w urządzeniach MTD uwzględniono możliwość przejścia w tryb energooszczędny, poprzez naciśnięci przycisku Button 3, w wyniku czego ED zmienia pełniącą rolę z MED na SED oraz obniża zużycie energii w wyniku ograniczenia zużycia pamięci RAM.
+    Co więcej, w urządzeniach MTD uwzględniono możliwość przejścia w tryb energooszczędny, poprzez naciśnięci przycisku Button 3, w wyniku czego ED zmienia pełniącą rolę z MED na SED oraz obniża zużycie energii w wyniku ograniczenia zużycia pamięci RAM.
 
     Na potrzeby procesu rozwoju oprogramowania, wzbogacono wszystkie 4 platformy, o sygnalizację stanu urządzenia Thread przy pomocy LED (ang. \textit{light-emitting diode}). Dioda LED1 świeci się, gdy urządzenie Thread jest włączone do sieci.
     
@@ -55,7 +55,7 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
         Obecna sekcja ma za zadanie przybliżyć szczegóły implementacji poszczególnych komponentów wymienionych w Rozdziale \ref{cha:propozycja-systemu}.
 
         \subsubsection{Baza danych}
-            Przez wzgląd na mały rozmiar, pełne wsparcie funkcjonalności SQL (ang. \textit{Structured Query Language}) oraz możliwość przechowywania bazy danych w pojedynczym pliku, jako silnik, wykorzystywanej w projekcie systemu, Bazy Danych wybrano SQLite. \cite{sqlite}.
+            Przez wzgląd na mały rozmiar, pełne wsparcie funkcjonalności SQL (ang. \textit{Structured Query Language}) oraz możliwość przechowywania bazy danych w pojedynczym pliku, jako silnik wykorzystywanej w projekcie systemu Bazy Danych wybrano SQLite. \cite{sqlite}.
 
             Stworzony na potrzeby systemu zestaw tabel Bazy Danych przedstawiono na Rysunku \ref{fig:db-diagram}.
 
@@ -97,7 +97,7 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
     
         \subsubsection{HEATER oraz DIMMER}
 
-            Platformy nRF52833 pracujące jako MTD, w których skonfigurowano stos Thread, jak opisano w Podsekcji \ref{subsubsec:mtd-ftd-devices-implementation}, wzbogacono o warstwę aplikacji. Urządzenia Końcowe symulują zachowanie zdefiniowanych w Sekcji \ref{sec:system-clients} profili HEATER oraz DIMMER. Wysyłanie zapytań oraz odbieranie odpowiedzi CoAP zaimplementowano z wykorzystaniem API dostarczonego przez nRF Connect SDK oraz OpenThread.
+            Platformy nRF52833 pracujące jako MTD, w których skonfigurowano stos Thread, jak opisano w Podsekcji \ref{subsubsec:mtd-ftd-devices-implementation}, wzbogacono o warstwę aplikacji. Urządzenia Końcowe symulują zachowanie zdefiniowanych w Sekcji \ref{sec:system-clients} profili HEATER oraz DIMMER. Wysyłanie zapytań oraz odbieranie odpowiedzi CoAP zaimplementowano z wykorzystaniem API dostarczonego przez nRF Connect SDK, oraz OpenThread.
 
             W urządzeniach HEATER oraz DIMMER skonfigurowano przycisk Button 3, którego naciśnięcie inicjalizuje stronę klienta CoAP oraz pobiera z sieci prefiks NAT64, niezbędny do nawiązania połączenia z serwerem o skonfigurowanym IPv4.
         
@@ -126,23 +126,25 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
             \end{figure}
 
     \subsection{Symulacja}
-    W wyniku założenia o symulacyjnym charakterze prototypowego systemu, tj. braku uwzględnienia rzeczywistych czujników oraz układów regulacyjnych, zaimplementowano ekosystem, który stanowi pewne przybliżenie środowiska, w którym mógłby operować system. 
+    W wyniku założenia o symulacyjnym charakterze prototypowego systemu tj. braku uwzględnienia rzeczywistych czujników oraz układów regulacyjnych zaimplementowano ekosystem, który stanowi pewne przybliżenie środowiska, w którym mógłby operować system. 
 
-    W układach HEATER oraz DIMMER zasymulowano zmiany temperatury oraz natężenia oświetlenia z wykorzystaniem licznika systemowego. Wraz z przerwaniem licznika, które dla HEATER następuje co 100ms, natomiast dla DIMMER co 200ms, aktualna temperatura oraz aktualne natężenie oświetlenia zastępowane są nową temperaturą oraz nowym natężeniem oświetlenia. 
+    W układach HEATER oraz DIMMER zasymulowano zmiany temperatury, oraz natężenia oświetlenia z wykorzystaniem licznika systemowego. Wraz z przerwaniem licznika, które dla HEATER następuje co 100ms, natomiast dla DIMMER co 200ms, aktualna temperatura oraz aktualne natężenie oświetlenia zastępowane są nową temperaturą, oraz nowym natężeniem oświetlenia. 
 
     Temperatura środowiska w układzie HEATER opisana jest następującym wzorem:
         \[nowa\_temperatura = aktualna\_temperatura + a\cdot parametr\_regulacji + b\]
     Gdzie:
     \begin{itemize}
-        \item a = 0,00025
-        \item b = -5a 
+        \item \textit{a = 0,00025},
+        \item \textit{b = -5a}. 
     \end{itemize}
 
     Natomiast zmiany natężenia środowiska w układzie DIMMER opisuje funkcja:
-    \[nowe\_natężenie= aktualne\_natężenie + a\cdot parametr\_regulacji\]
+    \[nowe\_no= aktualne\_no + a\cdot parametr\_regulacji\]
     Gdzie:
     \begin{itemize}
-        \item a = 0,00025
+        \item \textit{nowe\_no} - nowe natężenie oświetlenia,
+        \item \textit{aktualne\_no} - aktualne natężenie oświetlenia,
+        \item \textit{a = 0,00025}
     \end{itemize}
 
     Wprowadzony parametr b we wzorze na chwilową temperaturę ekosystemu w układzie HEATER pozwala na zasymulowanie powolnego spadku temperatury. Środowisko wdrożone w Układzie DIMMER można przyjąć za izolowane, ponieważ nie uwzględnia żadnych zewnętrznych źródeł światła.
@@ -177,8 +179,8 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
             \begin{enumerate}
                 \item Użytkownik korzystający z panelu Web GUI, służącego do ustawiania parametrów systemu, zobrazowanym na Rysunku \ref{fig:web-gui-set-parameters}, podaje i zatwierdza wartości.
                 \item Wprowadzone wartości \textit{temperature} oraz \textit{illuminance} wstawiane są do tabeli WEB\_MANAGER Bazy Danych.
-                \item System Controller cyklicznie odpytuje bazę danych o ostatnio zaktualizowane wartości temperatury i natężenia oświetlenia.
-                \item Po uzyskaniu wartości \textit{temperature} oraz \textit{illuminance}, System Controller zapisuje je w swoim programie.
+                \item System Controller cyklicznie odpytuje Bazę Danych o ostatnio zaktualizowane wartości temperatury i natężenia oświetlenia.
+                \item Po uzyskaniu wartości \textit{temperature} oraz \textit{illuminance} System Controller zapisuje je w swoim programie.
             \end{enumerate}
 
         \subsubsection{Pomiar}
@@ -194,10 +196,10 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
 
             Kolejnymi krokami pomiaru temperatury w fazie pomiaru są:
             \begin{enumerate}
-                \item Urządzenie HEATER wysyła zapytanie do System Controllera o umieszczenie aktualnej temperatury \textit{curr\_temp} w zasobie \textit{temperature} .
+                \item Urządzenie HEATER wysyła zapytanie do System Controllera o umieszczenie aktualnej temperatury \textit{curr\_temp} w zasobie \textit{temperature}.
                 \item System Controller umieszcza otrzymaną wartość \textit{curr\_temp} w zasobach serwera.
                 \item System Controller loguje informację o przetworzonym zapytaniu, umieszczając otrzymaną wartość temperatury w tabeli HEATER Bazy Danych.
-                \item System Controller w ramach potwierdzenia otrzymania zapytania, odpowiada układowi HEATER.
+                \item System Controller w ramach potwierdzenia otrzymania zapytania odpowiada układowi HEATER.
             \end{enumerate}
 
             Na Rysunku \ref{fig:seq-dimmer-measure} zilustrowano przepływ wiadomości między komponentami systemu w fazie pomiaru natężenia oświetlenia.
@@ -211,10 +213,10 @@ Projekt aplikacji systemu znajduje się w stworzonym przez autora pracy repozyto
 
             Kolejnymi krokami pomiaru natężenia oświetlenia w fazie pomiaru są:
             \begin{enumerate}
-                \item Urządzenie DIMMER wysyła zapytanie do System Controllera o umieszczenie aktualnego natężenia oświetlenia \textit{curr\_ill} w zasobie \textit{illuminance} .
+                \item Urządzenie DIMMER wysyła zapytanie do System Controllera o umieszczenie aktualnego natężenia oświetlenia \textit{curr\_ill} w zasobie \textit{illuminance}.
                 \item System Controller umieszcza otrzymaną wartość natężenia oświetlenia \textit{curr\_ill} w zasobach serwera.
                 \item System Controller loguje informację o przetworzonym zapytaniu, umieszczając otrzymaną wartość natężenia oświetlenia w tabeli DIMMER Bazy Danych.
-                \item System Controller w ramach potwierdzenia otrzymania zapytania, odpowiada układowy HEATER.
+                \item System Controller w ramach potwierdzenia otrzymania zapytania odpowiada układowy HEATER.
             \end{enumerate}
 
 

@@ -1,7 +1,7 @@
 \chapter{Wprowadzenie do Thread}
 \label{cha:wprowadzenie}
 
-Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, poprzez przedstawienie i omówienie stosu protokołów, wyszczególnienie urządzeń oraz ról w jakich pracują węzły sieci Thread oraz zaprezentowanie wybranych, podstawowych mechanizmów, przydatnych do zrozumienia zagadnienia sieci Thread. Rozważania w poniższym rozdziale oparte zostały o publiczną dokumentację Thread \cite{thread-1.3.0}.
+Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, poprzez przedstawienie i omówienie stosu protokołów, wyszczególnienie urządzeń i ról, w jakich pracują węzły sieci Thread oraz zaprezentowanie wybranych, podstawowych mechanizmów, przydatnych do zrozumienia zagadnienia sieci Thread. Rozważania w poniższym rozdziale oparte zostały o publiczną dokumentację Thread \cite{thread-1.3.0}.
 
 \section{Stos protokołów}
 \label{sec:thread-stack}
@@ -17,7 +17,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
 
     \subsection{Warstwa Fizyczna oraz Warstwa Łącza Danych}
 
-        Protokół Thread jest stworzony dla urządzeń, których 2 pierwsze warstwy modelu OSI są oparte o standard definiujący LR-WPAN w wersjach IEEE 802.15.4-2006 lub IEEE IEEE 802.15.4-2015. Jednakże nie jest wymaganym aby urządzenia Thread funkcjonowały w sieciach LR-WPAN. Ponadto protokół Thread nie wykorzystuje zdefiniowanych w 802.15.4 ról, takich jak:
+        Protokół Thread jest stworzony dla urządzeń, których 2 pierwsze warstwy modelu OSI są oparte o standard definiujący LR-WPAN w wersjach IEEE 802.15.4-2006 lub IEEE 802.15.4-2015. Jednakże nie jest wymagane, aby urządzenia Thread funkcjonowały w sieciach LR-WPAN. Ponadto protokół Thread nie wykorzystuje zdefiniowanych w IEEE 802.15.4 ról, takich jak:
         \begin{itemize}
             \item FFD (ang. \textit{Full-Function Device}),
             \item RFD (ang. \textit{Reduced-Function Device}),
@@ -28,7 +28,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
 
         W warstwie 3. Modelu OSI Thread implementuje protokół IPv6.
         
-        W celu umożliwienia przesyłania pakietów IPv6 nad LR-WPAN, wprowadzono warstwę adaptacyjną 6LoWPAN. Usprawnienie to pozwala na enkapsulacje pakietów IPv6 do IEEE 802.15.4 MSDU (MAC Service Data Unit) oraz definiuje mechanizmy kompresji nagłówków IPv6, fragmentacji i składania pakietów IPv6, odpowiednio do oraz z IEEE 802.15.4 MSDU.
+        W celu umożliwienia przesyłania pakietów IPv6 nad LR-WPAN wprowadzono warstwę adaptacyjną 6LoWPAN. Usprawnienie to pozwala na enkapsulacje pakietów IPv6 do IEEE 802.15.4 MSDU (ang. \textit{MAC Service Data Unit}) oraz definiuje mechanizmy kompresji nagłówków IPv6, fragmentacji i składania pakietów IPv6, odpowiednio do oraz z IEEE 802.15.4 MSDU.
         
         Do rutowania (ang. \textit{routing}) Thread wykorzystuje zdefiniowany w rozdziale 5.9 dokumentacji \cite{thread-1.3.0} protokół rutingu wektora odległości.
 
@@ -45,7 +45,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
 
     \subsection{Podstawowe role urządzeń}
 
-    W celu pełnej klasyfikacji węzłów w sieci Thread, dokonano ich podziału ze względu na umiejętność przekazywania (ang. \textit{forwarding}) pakietów oraz opisano ich charakterystykę:
+    W celu pełnej klasyfikacji węzłów w sieci Thread dokonano ich podziału ze względu na umiejętność przekazywania (ang. \textit{forwarding}) pakietów oraz opisano ich charakterystykę:
     \begin{enumerate}
         \item Ruter (ang. \textit{router}):
         \begin{itemize}
@@ -103,7 +103,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         Poza podstawową funkcjonalnością, jaką jest przekazywanie pakietów między węzłami sieci, Ruter w sieci Thread może posiadać dodatkowe role. Między innymi są to:
         \begin{itemize}
             \item Lider (ang. \textit{Leader}),
-            \item Ruter Brzegowy (ang. Border Router).
+            \item Ruter Brzegowy (ang. \textit{Border Router}).
         \end{itemize}
 
         \subsubsection{Lider}
@@ -113,14 +113,14 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         Główne funkcje Lidera:
         \begin{itemize}
             \item Awans do Ruterów oraz ich degradacja poprzez zarządzanie numerem ID Rutera (ang. \textit{Router ID}),
-            \item Zbierania i rozsyłanie informacji o sieci Thread (ang. \textit{Thread Network Data}).
+            \item Zbierania i rozsyłanie informacji o sieci Thread.
         \end{itemize}
 
         Proces awansu i degradacji węzłów przez Lidera uwzględnia możliwości typów urządzeń opisane w podsekcji \ref{subsec:device-types}. W jednej sieci Thread rolę Lidera może pełnić tylko jedno urządzenia. W momencie tworzenie topologii, urządzenie FTD inicjujące sieć zostaje wybierane na Lidera.
         
         \subsubsection{Ruter Brzegowy}
 
-        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędnym jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe, jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}), oraz potrafi przekazywać między nimi pakiety IPv6.
+        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędne jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe, jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}), oraz potrafi przekazywać między nimi pakiety IPv6.
 
     Wymienione role Rutera mogą się nakładać. Jeden węzeł może być jednocześnie np. Ruterem Brzegowym, Liderem oraz Rodzicem dla innego ED.
 
@@ -144,9 +144,9 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
     \subsection{Commissioning}
     \label{subsec:commissioning}
 
-    Commissioning to proces pozwalający nowym urządzeniom na dołączenie do istniejącej sieci Thread. W celu zapewnienia bezpieczeństwa oraz powstrzymanie niechcianych urządzeń (ang. \textit{Rouge Device}) przed połączeniem z siecią Thread, węzły powinny zostać uwierzytelnione i autoryzowane. Podstawą działania mechanizmu jest protokół DTLS (ang. \textit{Datagram Transport Layer Security}).
+    Commissioning to proces pozwalający nowym urządzeniom na dołączenie do istniejącej sieci Thread. W celu zapewnienia bezpieczeństwa oraz powstrzymanie niechcianych urządzeń (ang. \textit{Rouge Device}) przed połączeniem z siecią Thread węzły powinny zostać uwierzytelnione i autoryzowane. Podstawą działania mechanizmu jest protokół DTLS (ang. \textit{Datagram Transport Layer Security}).
 
-    W celu opisania mechanizmu Commissioning, wprowadzono następujące terminy:
+    Do opisania mechanizmu Commissioning wprowadzono następujące terminy:
     \begin{itemize}
         \item \textit{Joiner} - rola nowego urządzenia próbującego podłączyć się do sieci.
         \item \textit{Commissioner} - rola urządzenia, który uwierzytelnia węzeł o roli Joiner.
@@ -159,14 +159,14 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         \item \textit{External}.
     \end{enumerate}
 
-    W aktualnej sekcji, opisany zostanie jedynie scenariusz On-mesh, w którym Commissioner jest częścią sieci w domenie Thread.
+    W aktualnej sekcji opisany zostanie jedynie scenariusz On-mesh, w którym Commissioner jest częścią sieci w domenie Thread.
 
     Na Rysunku \ref{fig:thread-on-mesh-commissioning} przedstawiono przykładową sieć Thread z wyszczególnieniem ról charakterystycznych dla procesu On-mesh Commissioning.
 
-    W sieci Thread, w jednym momencie może istnieć dokładnie jeden Commissioner. Urządzenia, które mogą pełnić rolę Commissioner, wymieniają wiadomości z Liderem, w celu ustalenia, który z kandydatów będzie pełnił tę funkcję. Proces ten określono nazwą Petitioning.
+    W sieci Thread, w jednym momencie może istnieć dokładnie jeden Commissioner. Urządzenia, które mogą pełnić rolę Commissioner, wymieniają wiadomości z Liderem, w celu ustalenia, który z kandydatów będzie pełnił tę funkcję. Proces ten określono nazwą \textit{Petitioning}.
 
-    Po elekcji urządzenia, który będzie pełnił rolę Commissioner, kolejne urządzenia Joiner są w stanie rozpocząć próbę dołączenia do sieci, nazwaną Joining.
-    W kolejnym kroku zestawione zostaje połączenie \\ Joiner-Joiner Router, a następnie Joiner-Commissioner, które jest zabezpieczone z użyciem protokołu DTLS i do którego zestawienia niezbędne jest podanie przez Joinera Joining Device Credential (PSKd). Następnie Joiner zostaje uwierzytelniony na skutek wymiany kolejnych wiadomości z Commissioner. W wyniku poprawnie przeprowadzonego procesu Commissioning, urządzenie posiada wszystkie niezbędne informacje, aby podłączyć się do sieci.
+    Po elekcji urządzenia, który będzie pełnił rolę Commissioner, kolejne urządzenia Joiner są w stanie rozpocząć próbę dołączenia do sieci, nazwaną \textit{Joining}.
+    W kolejnym kroku zestawione zostaje połączenie \\ Joiner-Joiner Router, a następnie Joiner-Commissioner, które jest zabezpieczone z użyciem protokołu DTLS ,\\ i do którego zestawienia niezbędne jest podanie przez Joinera Joining Device Credential (PSKd). Następnie Joiner zostaje uwierzytelniony na skutek wymiany kolejnych wiadomości z Commissioner. W wyniku poprawnie przeprowadzonego procesu Commissioning urządzenie posiada wszystkie niezbędne informacje, aby podłączyć się do sieci.
 
     \begin{figure}[H]
         \centering
@@ -177,9 +177,9 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
 
     \subsection{Dołączanie do sieci}
 
-    Proces dołączania do sieci Thread rozpoczyna się od skanowania istniejących sieci IEEE 802.15.4 na kolejnych kanałach. Urządzenie podłączające się rozgłasza żądanie Beacon Request. W przypadku otrzymania wiadomości przez Rutery lub REED, odpowiadają one poprzez wysłanie Beacon, który zawiera podstawowe informacje na temat danej sieci.
+    Proces dołączania do sieci Thread rozpoczyna się od skanowania istniejących sieci IEEE 802.15.4 na kolejnych kanałach. Urządzenie podłączające się rozgłasza żądanie Beacon Request. W przypadku otrzymania wiadomości przez Rutery lub REED odpowiadają one poprzez wysłanie Beacon, który zawiera podstawowe informacje na temat danej sieci.
 
-    Po zakończeniu procesu odkrywania sieci Thread, urządzenie może próbować podłączyć się do istniejącej sieci lub utworzyć własną.
+    Po zakończeniu procesu odkrywania sieci Thread urządzenie może próbować podłączyć się do istniejącej sieci lub utworzyć własną.
 
     Aby urządzenie było w stanie dołączyć do sieci Thread, jest zobowiązane do pozyskania poniższych parametrów opisujących konkretną sieć Thread:
     \begin{itemize}

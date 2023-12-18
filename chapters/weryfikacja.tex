@@ -56,9 +56,9 @@ Po zatwierdzeniu parametrów, a w konsekwencji utworzeniu sieci Thread, skonfigu
     
 Tak skonfigurowane urządzenie jest w pełni funkcjonalnym Ruterem brzegowym, pracującym w roli Commissioner.
 
-W kolejnym kroku, uruchomiono pozostałe platformy nRF52833, pracujące jak urządzenia FTD\\ oraz HEATER i DIMMER. Po włączeniu urządzeń, przystąpiono do konfiguracji roli Joiner, każdego z węzłów.
+W kolejnym kroku uruchomiono pozostałe platformy nRF52833, pracujące jak urządzenia FTD\\ oraz HEATER i DIMMER. Po włączeniu urządzeń przystąpiono do konfiguracji roli Joiner, każdego z węzłów.
 
-Ukończywszy proces Commissioningu dokonano analizy powstałej topologi, dzięki której ustalono, że w sieci funkcjonują 2 węzły typu Dziecko, które pełnią role HEATER oraz DIMMER oraz 3 Rutery, z których jeden jest Liderem i Ruterem Brzegowym OTBR. Na potrzeby rozróżnienia 2 pozostałych Ruterów w dalszej części rozdziału, nadano im nazwę \textit{Router 1} oraz \textit{Router 2}. Następnie zweryfikowano połączenie między każdym węzłem sieci, rozsyłając pakiet ICMP (ang. \textit{Internet Control Message Protocol}) multicast na adres FF03::1, który jest subskrybowany przez każde urządzenie w danej sieci Thread. W Tabeli \ref{tab:mleid} zestawiono MLEID (ang. \textit{Mesh-Local Endpoint Identifiers}), czyli unikalne adresy IPv6 węzłów w utworzonej sieci Thread.
+Ukończywszy proces Commissioning, dokonano analizy powstałej topologi, dzięki której ustalono, że w sieci funkcjonują 2 węzły typu Dziecko, które pełnią role HEATER i  DIMMER, oraz 3 Rutery, z których jeden jest Liderem i Ruterem Brzegowym OTBR. Na potrzeby rozróżnienia 2 pozostałych Ruterów w dalszej części rozdziału, nadano im nazwę \textit{Router 1} oraz \textit{Router 2}. Następnie zweryfikowano połączenie między każdym węzłem sieci, rozsyłając pakiet ICMP (ang. \textit{Internet Control Message Protocol}) na adres multicast FF03::1, który jest subskrybowany przez każde urządzenie w danej sieci Thread. W Tabeli \ref{tab:mleid} zestawiono MLEID (ang. \textit{Mesh-Local Endpoint Identifiers}), czyli unikalne adresy IPv6 węzłów w utworzonej sieci Thread.
 
 \begin{table}[H]
     \centering
@@ -83,7 +83,7 @@ Ukończywszy proces Commissioningu dokonano analizy powstałej topologi, dzięki
 \end{table}
 
 
-Upewniwszy się o poprawności funkcjonowania sieci oraz, że każde z urządzeń otrzymuje odpowiedź od pozostałych węzłów, uruchomiono aplikację System Controllera oraz Web GUI wykorzystując przygotowany wcześniej skrypt \textit{my-run-coap-server.sh} znajdujący się w repozytorium \cite{project-repo}. 
+Upewniwszy się o poprawności funkcjonowania sieci, oraz że każde z urządzeń otrzymuje odpowiedź od pozostałych węzłów, uruchomiono aplikację System Controllera oraz Web GUI wykorzystując przygotowany wcześniej skrypt \textit{my-run-coap-server.sh} znajdujący się w repozytorium \cite{project-repo}. 
 
 Topologię systemu po uruchomieniu wszystkich jego komponentów przedstawiono na Rysunku \ref{fig:system-topology}.
 
@@ -107,7 +107,7 @@ Na Rysunku \ref{fig:serwer-app} zaprezentowano zrzut ekranu z konsoli, w której
 
 \section{Weryfikacja zasady działania systemu}
 
-W celu weryfikacji poprawności zachowania stworzonego systemu, wykorzystano narzędzie Grafana \cite{grafana}. Platforma Grafana pozwala na tworzenie interaktywnych paneli do monitorowania danych z wybranego przez użytkownika źródła, takiego jak baza danych. Aby zwizualizować dane pochodzące z logów systemowych, jako zasób wybrano zaimplementowaną Bazę Danych, której architektura przedstawiono na Rysunku \ref{fig:db-diagram}. Następnie z wykorzystaniem kwerend SQL, utworzono panel Grafana zawierający 4 przebiegi czasowe, które przedstawiono na  na Rysunkach \ref{fig:graph-heater-temperature}, \ref{fig:graph-heater-regulation}, \ref{fig:graph-dimmer-illuminance} oraz \ref{fig:graph-dimmer-regulation}.
+W celu weryfikacji poprawności zachowania stworzonego systemu wykorzystano narzędzie Grafana \cite{grafana}. Platforma Grafana pozwala na tworzenie interaktywnych paneli do monitorowania danych z wybranego przez użytkownika źródła, takiego jak baza danych. Aby zwizualizować dane pochodzące z logów systemowych, jako zasób wybrano zaimplementowaną Bazę Danych, której architektura przedstawiono na Rysunku \ref{fig:db-diagram}. Następnie z wykorzystaniem kwerend SQL, utworzono panel Grafana zawierający 4 przebiegi czasowe, które przedstawiono na Rysunkach \ref{fig:graph-heater-temperature}, \ref{fig:graph-heater-regulation}, \ref{fig:graph-dimmer-illuminance},  \ref{fig:graph-dimmer-regulation}.
     
 \begin{figure}[H]
     \centering
