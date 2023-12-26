@@ -30,7 +30,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         
         W celu umożliwienia przesyłania pakietów IPv6 nad LR-WPAN wprowadzono warstwę adaptacyjną 6LoWPAN. Usprawnienie to pozwala na enkapsulacje pakietów IPv6 do IEEE 802.15.4 MSDU (ang. \textit{MAC Service Data Unit}) oraz definiuje mechanizmy kompresji nagłówków IPv6, fragmentacji i składania pakietów IPv6, odpowiednio do oraz z IEEE 802.15.4 MSDU.
         
-        Do rutowania (ang. \textit{routing}) Thread wykorzystuje zdefiniowany w rozdziale 5.9 dokumentacji \cite{thread-1.3.0} protokół rutingu wektora odległości.
+        Do trasowania (ang. \textit{routing}) Thread wykorzystuje zdefiniowany w rozdziale 5.9 dokumentacji \cite{thread-1.3.0} protokół rutingu typu distance vector.
 
     \subsection{Warstwa Transportowa}
     
@@ -116,11 +116,11 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
             \item Zbierania i rozsyłanie informacji o sieci Thread.
         \end{itemize}
 
-        Proces awansu i degradacji węzłów przez Lidera uwzględnia możliwości typów urządzeń opisane w podsekcji \ref{subsec:device-types}. W jednej sieci Thread rolę Lidera może pełnić tylko jedno urządzenia. W momencie tworzenie topologii, urządzenie FTD inicjujące sieć zostaje wybierane na Lidera.
+        Proces awansu i degradacji węzłów przez Lidera uwzględnia możliwości typów urządzeń opisane w podsekcji \ref{subsec:device-types}. W jednej sieci Thread rolę Lidera może pełnić tylko jedno urządzenia. W momencie tworzenia topologii, urządzenie FTD inicjujące sieć zostaje wybierane na Lidera.
         
         \subsubsection{Ruter Brzegowy}
 
-        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędne jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe, jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}), oraz potrafi przekazywać między nimi pakiety IPv6.
+        W celu nawiązania komunikacji między siecią Thread a siecią IP spoza tej domeny, np. Ethernet lub IEEE 802.11, niezbędne jest, aby w sieci przynajmniej jeden Ruter funkcjonował jako Ruter Brzegowy. Posiada on minimum 2 interfejsy sieciowe - jeden interfejs sieciowy Thread oraz drugi zewnętrzny oparty o IP, najczęściej Ethernet lub WLAN (ang. \textit{Wireless Local Area Network}). Zadaniem takiego Routera jest przekazywanie pakietów IPv6 pomiędzy tymi interfejsami.
 
     Wymienione role Rutera mogą się nakładać. Jeden węzeł może być jednocześnie np. Ruterem Brzegowym, Liderem oraz Rodzicem dla innego ED.
 
@@ -129,9 +129,9 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
     \subsection{Tworzenie sieci}
     \label{subsec:network-forming}
 
-    Formowanie sieci Thread rozpoczyna się od wybrania IEEE 802.15.4 numeru kanału (ang. \textit{channel}) oraz IEEE 802.15.4 PAN ID (ang. \textit{Personal Area Network Identifier}). Kolejno, aby stworzyć sieć, urządzenie inicjujące jest zobligowane do wybrania wartości poniższych parametrów:
+    Formowanie sieci Thread rozpoczyna się od wybrania numeru kanału (ang. \textit{channel}) oraz identyfikatora PAN ID (ang. \textit{Personal Area Network Identifier}) zgodnie z IEEE 802.15.4. Kolejno, aby stworzyć sieć, urządzenie inicjujące jest zobligowane do wybrania wartości poniższych parametrów:
     \begin{itemize}
-        \item \textit{Thread Network Short PAN Identifier (PAN ID)} - 16 b, liczba całkowita bez znaku, unikalna w zasięgu skanowania.
+        \item \textit{Thread Network Short PAN Identifier (PAN ID)} - 16 bitowa liczba całkowita bez znaku, unikalna w zasięgu skanowania.
         \item \textit{Network Key} - 16 B, do zastosowań kryptograficznych.
         \item \textit{Commissioning Credential} - 8-255 B, ciąg znaków, wykorzystywany do tworzenia klucza PSKc podczas procesu Commissioning.
         \item \textit{Mesh-Local Prefix} - prefix IPv6, wykorzystywany do adresacji urządzeń w sieci Thread.
@@ -139,7 +139,7 @@ Niniejszy rozdział ma na celu przybliżenie informacji dotyczącej Thread, popr
         \item \textit{Network Name} - 1-16 B, ciąg znaków, identyfikuje sieć Thread.
     \end{itemize}{}
 
-    Urządzenie inicjujące sieć zostaje Ruterem, wybierając dla siebie identyfikator \textit{RouterId}, a w konsekwencji braku innych Ruterów w sieci, również Liderem.
+    Urządzenie inicjujące sieć zostaje Ruterem, wybierając dla siebie identyfikator \textit{RouterId}, a w konsekwencji braku innych Ruterów w sieci, zostaje również Liderem.
 
     \subsection{Commissioning}
     \label{subsec:commissioning}
