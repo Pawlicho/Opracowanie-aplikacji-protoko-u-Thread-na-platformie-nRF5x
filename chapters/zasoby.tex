@@ -15,7 +15,7 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\linewidth]{graphics/memory-raport.png}
-        \caption{Zrzut ekranu przedstawiający narzędzie Memory Raport.}
+        \caption{Zrzut ekranu z narzędziem Memory Raport.}
         \label{fig:memory-raport}
     \end{figure}
 
@@ -27,11 +27,11 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
         W celu ustalenia punktu odniesienia zbudowano projekt bez uwzględniania jakichkolwiek dodatkowych opcji konfiguracji.
         Uzyskane zużycie pamięci zestawiono na pozycji \textit{1} w Tabeli \ref{tab:memory-measures}.
         
-        Zauważono, że większość wykorzystanego ROM, związana jest z uruchomieniem systemu operacyjnego Zephyr, jest skojarzona z uwzględnieniem sterowników sprzętowych oraz warstwy HAL (ang. \textit{Hardware Abstraction Layer}). W przypadku pamięci RAM, większość zasobów została poświęcona na stos przerwań oraz na inicjalizację jądra systemu operacyjnego.
+        Zauważono, że większość wykorzystanego ROM związana jest z uruchomieniem systemu operacyjnego Zephyr i jest skojarzona z uwzględnieniem sterowników sprzętowych oraz warstwy HAL (ang. \textit{Hardware Abstraction Layer}). W przypadku pamięci RAM, większość zasobów została poświęcona na stos przerwań oraz na inicjalizację jądra systemu operacyjnego.
 
         \subsection{Projekt z opcją networking}
 
-        Do inicjalizacji stosu Thread, niezbędnym jest skonfigurowanie warstwy sieciowej IP oraz funkcjonalności z nią związanych. W tym celu wzbogacono projekt o parametr konfiguracyjny \textit{CONFIG\_NETWORKING}, który uwzględnia w aplikacji warstwę łącza danych oraz warstwę sieciową, z protokołem IP.
+        Do inicjalizacji stosu Thread, niezbędnym jest skonfigurowanie warstwy sieciowej IP oraz funkcjonalności z nią związanych. W tym celu wzbogacono projekt o parametr konfiguracyjny \textit{CONFIG\_NETWORKING}, który uwzględnia w aplikacji warstwę łącza danych oraz warstwę sieciową z protokołem IP.
         Uzyskane zużycie pamięci zestawiono na pozycji \textit{2} w Tabeli \ref{tab:memory-measures}.
 
         \subsection{Projekt z włączonym stosem Thread v1.3}
@@ -42,11 +42,11 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
         
         Najwięcej zasobów pamięci nieulotnej jest pochłanianych przez bibliotekę OpenThread, uwzględnioną przez nRF Connect SDK. Rozmiar sekcji pamięci przeznaczonej dla biblioteki OpenThread wynosi 94,01 kB. Stos Thread wymaga odbioru ramek IEEE 802.15.4. Obszar dedykowany dla sterowników do konfiguracji LR-WPAN zajął 27,31 kB.
 
-        Wysokie zużycie pamięci RAM jest spowodowane koniecznością alokacji sekcji pamięci dla kontekstu sieci Thread, zastosowań kryptograficznych Mbed TLS oraz obsługi radia LR-WPAN. Sekcja przeznaczona na kontekst \textit{ot::gInstanceRaw} zajmuje 27,44 kB, natomiast obszar wykorzystywany przez Mbed TLS zużywa 12,92 kB.
+        Wysokie zużycie RAM jest spowodowane koniecznością alokacji sekcji pamięci dla kontekstu sieci Thread, zastosowań kryptograficznych Mbed TLS oraz obsługi radia LR-WPAN. Sekcja przeznaczona na kontekst \textit{ot::gInstanceRaw} zajmuje 27,44 kB, natomiast obszar wykorzystywany przez Mbed TLS zużywa 12,92 kB.
 
     \subsection{Projekt z włączonym stosem Thread w wersji 1.1 oraz 1.2}
 
-    W celu porównania zużycia zasobów sprzętowych między kolejnymi wersjami Thread dokonano pomiaru wykorzystania pamięci RAM oraz ROM również dla wersji 1.1 oraz 1.2., dodając do pliku konfiguracyjnego parametr \textit{CONFIG\_OPENTHREAD\_THREAD\_VERSION\_1\_1} lub \\ \textit{CONFIG\_OPENTHREAD\_THREAD\_VERSION\_1\_2}. Uzyskane zużycie pamięci zestawiono na pozycji \textit{4} oraz \textit{5} w Tabeli \ref{tab:memory-measures}.
+    W celu porównania zużycia zasobów sprzętowych między kolejnymi wersjami Thread dokonano pomiaru wykorzystania RAM oraz ROM również dla wersji 1.1 oraz 1.2., dodając do pliku konfiguracyjnego parametr \textit{CONFIG\_OPENTHREAD\_THREAD\_VERSION\_1\_1} lub \\ \textit{CONFIG\_OPENTHREAD\_THREAD\_VERSION\_1\_2}. Uzyskane zużycie pamięci zestawiono na pozycji \textit{4} oraz \textit{5} w Tabeli \ref{tab:memory-measures}.
 
     Niewielka różnica w wielkości wykorzystanych zasobów RAM oraz ROM między wersją 1.1 a 1.2, oraz 1.3 wynika z konieczności uwzględnienia dodatkowych mechanizmów i funkcjonalności w sieci Thread \cite{nrf-thread-version-options}, takich jak \textit{Coordinated Sampled Listening}, \textit{Link Metrics Probing}, \textit{Multicast across Thread networks}, \textit{Thread Domain unicast addressing}, \textit{Enhanced Frame Pending, Enhanced Keep Alive}.
 
@@ -63,13 +63,13 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
     Na koniec przywrócono w projekcie rolę FTD.
 
     \subsection{Projekt z włączonym stosem Thread oraz skonfigurowanym mechanizmem Commissioning}
-    Projekt ze skonfigurowanym stosem Thread w wersji 1.3 wzbogacono o funkcjonalności związane z mechanizmem Commissioning. Do pliku konfiguracyjnego dodano opcję \\\textit{CONFIG\_OPENTHREAD\_COMMISSIONER}, aby ustalić rolę Commissioner urządzenia, a następnie \\\textit{CONFIG\_OPENTHREAD\_JOINER}, w celu konfiguracji roli Joiner. Uzyskane wartości zużytej pamięci zestawiono na pozycji \textit{8} oraz \textit{9} w Tabeli \ref{tab:memory-measures}.
+    Projekt ze skonfigurowanym stosem Thread w wersji 1.3 wzbogacono o funkcjonalności związane z mechanizmem Commissioning. Do pliku konfiguracyjnego dodano opcję \\\textit{CONFIG\_OPENTHREAD\_COMMISSIONER}, aby ustalić rolę Commissioner urządzenia, a następnie \\\textit{CONFIG\_OPENTHREAD\_JOINER} w celu konfiguracji roli Joiner. Uzyskane wartości zużytej pamięci zestawiono na pozycji \textit{8} oraz \textit{9} w Tabeli \ref{tab:memory-measures}.
     
     Po dokonaniu pomiaru wyłączono mechanizm Commissioning.
 
     \subsection{Projekt z włączonym stosem Thread oraz ze skonfigurowaną konsolą OpenThread CLI}
 
-    Aby umożliwić konfigurację urządzeń w sieci Thread poprzez użycie OpenThread CLI, niezbędne jest skonfigurowanie konsoli Shell. Utworzono nowy projekt, w którym skonfigurowano tylko konsolę. Zmierzono zużycie zasobów i zestawiono na pozycji \textit{10} w Tabeli \ref{tab:memory-measures}. Kolejno powrócono do projektu ze stosem Thread v1.3 dla urządzenia FTD, a następnie włączono funkcjonalności konsoli Shell oraz dodatkowo skonfigurowano funkcjonalność OpenThread CLI. Wykorzystany RAM oraz ROM po uwzględnieniu w projekcie OpenThread CLI zestawiono na pozycji \textit{11} w Tabeli \ref{tab:memory-measures}.
+    Aby umożliwić konfigurację urządzeń w sieci Thread poprzez użycie OpenThread CLI, niezbędne jest skonfigurowanie konsoli Shell. Utworzono nowy projekt, w którym skonfigurowano tylko konsolę. Zmierzono zużycie zasobów i zestawiono na pozycji \textit{10} w Tabeli \ref{tab:memory-measures}. Kolejno powrócono do projektu ze stosem Thread v1.3 dla urządzenia FTD, a następnie włączono funkcjonalności konsoli Shell oraz dodatkowo skonfigurowano OpenThread CLI. Wykorzystany RAM oraz ROM po uwzględnieniu w projekcie OpenThread CLI zestawiono na pozycji \textit{11} w Tabeli \ref{tab:memory-measures}.
         
     \begin{table}[H]
         \centering
@@ -105,7 +105,7 @@ W celu umożliwienia estymacji wymaganych zasobów sprzętowych w systemach opar
         \label{tab:memory-measures}
     \end{table}
 
-    W Tabeli \ref{tab:component-memory-usage} przedstawiono oszacowane wartości zużytych RAM oraz ROM dla analizowanych funkcjonalności, które zostały obliczone na podstawie różnić między wartościami zasobów umieszczonych w Tabeli \ref{tab:memory-measures}.
+    W Tabeli \ref{tab:component-memory-usage} przedstawiono oszacowane wartości zużytych RAM oraz ROM dla analizowanych funkcjonalności, które zostały obliczone na podstawie różnic między wartościami zasobów umieszczonych w Tabeli \ref{tab:memory-measures}.
 
     \begin{table}[H]
         \centering

@@ -1,10 +1,10 @@
 \chapter{Uruchomienie i weryfikacja poprawności działania systemu}
 
-Celem niniejszego rozdziału jest opisanie procesu uruchomienia systemu oraz weryfikacji poprawności działania, poprzez sprawdzenie połączeń między węzłami sieci Thread oraz zasady działania systemu, przedstawionych w podsekcji \ref{subsec:system-behaviour}.
+Celem niniejszego rozdziału jest opisanie procesu uruchomienia systemu i weryfikacji poprawności działania, poprzez sprawdzenie połączeń między węzłami sieci Thread oraz zasad działania systemu, przedstawionych w podsekcji \ref{subsec:system-behaviour}.
 
 \section{Uruchomienie}
 
-Pierwszym krokiem w uruchomieniu systemu, jest utworzenie sieci Thread. Proces tworzenie topologii rozpoczęto od wystartowania aplikacji OTBR.
+Pierwszym krokiem w uruchomieniu systemu jest utworzenie sieci Thread. Proces tworzenie topologii rozpoczęto od wystartowania aplikacji OTBR.
 
 Podłączono zaprogramowaną platformę, jak omówiono w Podsekcji \ref{subsec:otbr-implementation}, do portu szeregowego urządzenia gospodarza, a następnie sprawdzono poprawność komunikacji między maszyną wirtualną a urządzeniem pracującym jako RCP. Ostatecznie uruchomiono kontener Docker, zawierający aplikację OTBR, wykorzystując przygotowany wcześniej skrypt \textit{my-run-otbr.sh} znajdujący się w repozytorium \cite{project-repo}. Upewniwszy się o poprawnym działaniu Rutera Brzegowego, rozpoczęto tworzenie sieci Thread.
     
@@ -45,7 +45,7 @@ Wartości parametrów koniecznych do stworzenia sieci Thread, które opisano w P
     \label{tab:network-parameters}
 \end{table}
     
-Po zatwierdzeniu parametrów, a w konsekwencji utworzeniu sieci Thread, skonfigurowano Ruter brzegowy, aby pracował jako Commissioner w procesie przedstawionym w Podsekcji \ref{subsec:commissioning}. W tym celu wykorzystano OpenThread CLI \cite{otbr-cli}. Narzędzie to pozwala na konfigurację urządzeń sieci Thread, w których wdrożono OpenThread. Na Rysunku \ref{fig:ctl-commissioner} przedstawiono wprowadzone w konsolę OpenThread CLI komendy, konfigurujące rolę Commissioner w Ruterze brzegowym oraz pozwalające na dołączenie do sieci wszystkim urządzeniom posiadającym Commissioning Credential o wartości \textit{J01NME}.
+Po zatwierdzeniu parametrów, a w konsekwencji utworzeniu sieci Thread, skonfigurowano Ruter brzegowy, aby pracował jako Commissioner w procesie przedstawionym w Podsekcji \ref{subsec:commissioning}. W tym celu wykorzystano OpenThread CLI \cite{otbr-cli}. Narzędzie to pozwala na konfigurację urządzeń sieci Thread, w których wdrożono OpenThread. Na Rysunku \ref{fig:ctl-commissioner} przedstawiono wprowadzone w konsolę OpenThread CLI komendy konfigurujące rolę Commissioner w Ruterze brzegowym oraz pozwalające na dołączenie do sieci wszystkim urządzeniom posiadającym Commissioning Credential o wartości \textit{J01NME}.
     
 \begin{figure}[H]
     \centering
@@ -56,7 +56,7 @@ Po zatwierdzeniu parametrów, a w konsekwencji utworzeniu sieci Thread, skonfigu
     
 Tak skonfigurowane urządzenie jest w pełni funkcjonalnym Ruterem brzegowym, pracującym w roli Commissioner.
 
-W kolejnym kroku uruchomiono pozostałe platformy nRF52833, pracujące jak urządzenia FTD\\ oraz HEATER i DIMMER. Po włączeniu urządzeń przystąpiono do konfiguracji roli Joiner, każdego z węzłów.
+W kolejnym kroku uruchomiono pozostałe platformy nRF52833 pracujące jak urządzenia FTD oraz HEATER i DIMMER. Po włączeniu urządzeń przystąpiono do konfiguracji roli Joiner każdego z węzłów.
 
 Ukończywszy proces Commissioning, dokonano analizy powstałej topologi, dzięki której ustalono, że w sieci funkcjonują 2 węzły typu Dziecko, które pełnią role HEATER i  DIMMER, oraz 3 Rutery, z których jeden jest Liderem i Ruterem Brzegowym OTBR. Na potrzeby rozróżnienia 2 pozostałych Ruterów w dalszej części rozdziału, nadano im nazwę \textit{Router 1} oraz \textit{Router 2}. Następnie zweryfikowano połączenie między każdym węzłem sieci, rozsyłając pakiet ICMP (ang. \textit{Internet Control Message Protocol}) na adres multicast FF03::1, który jest subskrybowany przez każde urządzenie w danej sieci Thread. W Tabeli \ref{tab:mleid} zestawiono MLEID (ang. \textit{Mesh-Local Endpoint Identifiers}), czyli unikalne adresy IPv6 węzłów w utworzonej sieci Thread.
 
@@ -107,7 +107,7 @@ Na Rysunku \ref{fig:serwer-app} zaprezentowano zrzut ekranu z konsoli, w której
 
 \section{Weryfikacja zasady działania systemu}
 
-W celu weryfikacji poprawności zachowania stworzonego systemu wykorzystano narzędzie Grafana \cite{grafana}. Platforma Grafana pozwala na tworzenie interaktywnych paneli do monitorowania danych z wybranego przez użytkownika źródła, takiego jak baza danych. Aby zwizualizować dane pochodzące z logów systemowych, jako zasób wybrano zaimplementowaną Bazę Danych, której architektura przedstawiono na Rysunku \ref{fig:db-diagram}. Następnie z wykorzystaniem kwerend SQL, utworzono panel Grafana zawierający 4 przebiegi czasowe, które przedstawiono na Rysunkach \ref{fig:graph-heater-temperature}, \ref{fig:graph-heater-regulation}, \ref{fig:graph-dimmer-illuminance},  \ref{fig:graph-dimmer-regulation}.
+W celu weryfikacji poprawności zachowania stworzonego systemu wykorzystano narzędzie Grafana \cite{grafana}. Platforma Grafana pozwala na tworzenie interaktywnych paneli do monitorowania danych z wybranego przez użytkownika źródła, takiego jak baza danych. Aby zwizualizować dane pochodzące z logów systemowych, jako zasób wybrano zaimplementowaną Bazę Danych, której architektura przedstawiono na Rysunku \ref{fig:db-diagram}. Następnie z wykorzystaniem kwerend SQL utworzono panel Grafana zawierający 4 przebiegi czasowe, które przedstawiono na Rysunkach \ref{fig:graph-heater-temperature}, \ref{fig:graph-heater-regulation}, \ref{fig:graph-dimmer-illuminance},  \ref{fig:graph-dimmer-regulation}.
     
 \begin{figure}[H]
     \centering
